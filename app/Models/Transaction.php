@@ -17,7 +17,7 @@ class Transaction extends Model
         'name',
         'email',
         'phone',
-        'number_of_passangers',
+        'number_of_passengers',
         'promo_code_id',
         'payment_status',
         'subtotal',

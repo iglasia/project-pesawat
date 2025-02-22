@@ -72,7 +72,7 @@ class BookingController extends Controller
         $flight = $this->flightRepository->getFlightByFlightNumber($flightNumber); 
         $tier = $flight->classes->find($transaction['flight_class_id']); 
 
-
+        dd($transaction);
         return view('pages.booking.checkout', compact('transaction', 'flight', 'tier'));
     }
 

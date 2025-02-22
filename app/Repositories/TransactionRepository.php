@@ -47,7 +47,7 @@ class TransactionRepository implements TransactionRepositoryInterface
 
         //Simpan transaksi dan penumpang
         $transaction = $this->createTransaction($data);
-        $this->savePassengers($data['passangers'], $transaction->id);
+        $this->savePassengers($data['passengers'], $transaction->id);
 
         session()->forget('transaction');
 
