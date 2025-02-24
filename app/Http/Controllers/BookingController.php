@@ -120,4 +120,5 @@ class BookingController extends Controller
     {
         return view('pages.booking.check-booking');
     }
+    
 }
