@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('include')
-    <div id="Background" class="absolute top-0 w-full h-[810px] bg-[linear-gradient(180deg,#85C8FF_0%,#D4D1FE_47.05%,#F3F6FD_100%)]">
-        <img src="{{ asset('assets/images/backgrounds/Jumbo Jet Sky (1) 1.png') }}" 
-        class="absolute right-0 top-[147px] object-contain max-h-[481px]" alt="background image">
+    <div id="Background"
+        class="absolute top-0 w-full h-[810px] bg-[linear-gradient(180deg,#85C8FF_0%,#D4D1FE_47.05%,#F3F6FD_100%)]">
+        <img src="{{ asset('assets/images/backgrounds/Jumbo Jet Sky (1) 1.png') }}"
+            class="absolute right-0 top-[147px] object-contain max-h-[481px]" alt="background image">
     </div>
 @endsection
 
@@ -121,7 +122,7 @@
                             <div>
                                 <p class="text-sm text-garuda-grey">Seats</p>
                                 <p class="font-semibold text-lg leading-[27px] mt-[2px]">
-                                    {{ implode(', ',$flight->seats->whereIn('id', $transaction['selected_seats'])->pluck('name')->toArray()) }}
+                                    {{ implode(', ', $flight->seats->whereIn('id', $transaction['selected_seats'])->pluck('name')->toArray()) }}
                                 </p>
                             </div>
                         </div>
@@ -147,13 +148,12 @@
                             <div>
                                 <p class="text-sm text-garuda-grey">Discount</p>
                                 <p class="font-semibold text-lg leading-[27px] mt-[2px] text-garuda-green" id="discount">
-                                    Rp 0
-                                </p>
+                                    Rp 0</p>
                             </div>
                             <div>
                                 <p class="text-sm text-garuda-grey">Promo Code</p>
-                                <p class="font-semibold text-lg leading-[27px] mt-[2px] text-garuda-green" id="promo-code">
-                                    
+                                <p class="font-semibold text-lg leading-[27px] mt-[2px]" id="promo-code">
+
                                 </p>
                             </div>
                         </div>
@@ -173,13 +173,9 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit"
-                    class="w-full rounded-full py-3 px-5 text-center bg-garuda-blue hover:shadow-[0px_14px_30px_0px_#0068FF66] transition-all duration-300">
-                    <span class="font-semibold text-white">Continue Booking</span>
-                </button>
             </div>
-            <form action="{{ route('booking.payment', $flight->flight_number) }}" method="POST"
-                id="Right-Content" class="flex flex-col gap-[30px] w-[490px] shrink-0">
+            <form action="{{ route('booking.payment', $flight->flight_number) }}" method="POST" id="Right-Content"
+                class="flex flex-col gap-[30px] w-[490px] shrink-0">
                 @csrf
                 <div id="Customer-Info"
                     class="accordion group flex flex-col h-fit rounded-[20px] bg-white overflow-hidden has-[:checked]:!h-[75px] transition-all duration-300">
@@ -194,7 +190,8 @@
                             <p class="font-semibold">Complete Name</p>
                             <div
                                 class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300">
-                                <img src="{{ asset('assets/images/icons/profile-black.svg') }}" class="w-5 flex shrink-0" alt="icon">
+                                <img src="{{ asset('assets/images/icons/profile-black.svg') }}" class="w-5 flex shrink-0"
+                                    alt="icon">
                                 <input type="text" id="" value="{{ $transaction['name'] }}" readonly
                                     class="appearance-none outline-none w-full font-semibold placeholder:font-normal"
                                     placeholder="Write your complete name">
@@ -204,7 +201,8 @@
                             <p class="font-semibold">Email Address</p>
                             <div
                                 class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300">
-                                <img src="{{ asset('assets/images/icons/sms-black.png') }}" class="w-5 flex shrink-0" alt="icon">
+                                <img src="{{ asset('assets/images/icons/sms-black.png') }}" class="w-5 flex shrink-0"
+                                    alt="icon">
                                 <input type="email" id="" value="{{ $transaction['email'] }}" readonly
                                     class="appearance-none outline-none w-full font-semibold placeholder:font-normal"
                                     placeholder="Write your valid email">
@@ -214,7 +212,8 @@
                             <p class="font-semibold">Phone No.</p>
                             <div
                                 class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300">
-                                <img src="{{ asset('assets/images/icons/call-black.svg') }}" class="w-5 flex shrink-0" alt="icon">
+                                <img src="{{ asset('assets/images/icons/call-black.svg') }}" class="w-5 flex shrink-0"
+                                    alt="icon">
                                 <input type="tel" id="" value="{{ $transaction['phone'] }}" readonly
                                     class="appearance-none outline-none w-full font-semibold placeholder:font-normal"
                                     placeholder="Write your active number">
@@ -222,11 +221,7 @@
                         </label>
                     </div>
                 </div>
-                <!-- for accordions with select input inside, the script was different from the normal accordion -->
                 @foreach ($transaction['passengers'] as $passenger)
-                    {{-- <input type="hidden" name="passengers[{{ $loop->index }}][flight_seat_id]"
-                        value="{{ $transaction }}"> --}}
-
                     <div id="Passenger-{{ $loop->index + 1 }}"
                         class="accordion-with-select group flex flex-col h-fit rounded-[20px] bg-white overflow-hidden transition-all duration-300">
                         <button type="button" class="accordion-btn flex items-center justify-between p-5">
@@ -239,13 +234,12 @@
                                 <p class="font-semibold">Complete Name</p>
                                 <div
                                     class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                                    @error('passengers.' . $loop->index . '.name') border-red-500 @enderror">
+                                @error('passengers.' . $loop->index . '.name') border-red-500 @enderror">
                                     <img src="{{ asset('assets/images/icons/profile-black.svg') }}"
                                         class="w-5 flex shrink-0" alt="icon">
-                                    <input type="text" name="passengers[{{ $loop->index }}][name]" id=""
+                                    <input type="text" id=""
                                         class="appearance-none outline-none w-full font-semibold placeholder:font-normal"
-                                        placeholder="Write your complete name"
-                                        value="{{ $passenger['name'] }}">
+                                        placeholder="Write your complete name" value="{{ $passenger['name'] }}">
                                 </div>
                                 @error('passengers.' . $loop->index . '.name')
                                     <p class="text-sm text-red-500">{{ $message }}</p>
@@ -253,25 +247,22 @@
                             </label>
                             <div class="flex flex-col gap-[10px]">
                                 <p class="font-semibold">Date of Birth</p>
-                                <input type="hidden" name="passengers[{{ $loop->index }}][date_of_birth]"
-                                    id="dateOfBirth-{{ $loop->index }}" data-index="{{ $loop->index }}">
 
                                 <div class="flex items-center gap-[10px]">
                                     <!-- Dropdown untuk hari -->
                                     <label
                                         class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                                        @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
+                                    @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
                                         <img src="{{ asset('assets/images/icons/note-add-black.svg') }}"
                                             class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0"
                                             alt="icon">
                                         <select id="day-select-{{ $loop->index }}" name=""
                                             class="date-select day-select appearance-none w-full outline-none pl-[50px] py-3 px-5 font-semibold indeterminate:!font-normal"
-                                            data-index="{{ $loop->index }}"
-                                            onchange="updateDateOfBirth({{ $loop->index }})">
+                                            data-index="{{ $loop->index }}">
                                             @for ($i = 1; $i <= 31; $i++)
                                                 <option value="{{ $i }}"
-                                                {{ \Carbon\Carbon::parse($passenger['date_of_birth'])->format('d') == $i ? 'selected' : '' }}>
-                                                {{ $i }}
+                                                    {{ \Carbon\Carbon::parse($passenger['date_of_birth'])->format('d') == $i ? 'selected' : '' }}>
+                                                    {{ $i }}
                                                 </option>
                                             @endfor
                                         </select>
@@ -279,18 +270,17 @@
 
                                     <label
                                         class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                                        @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
+                                    @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
                                         <img src="{{ asset('assets/images/icons/note-add-black.svg') }}"
                                             class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0"
                                             alt="icon">
                                         <select id="month-select-{{ $loop->index }}" name=""
                                             class="date-select month-select appearance-none w-full outline-none pl-[50px] py-3 px-5 font-semibold indeterminate:!font-normal"
-                                            data-index="{{ $loop->index }}"
-                                            onchange="updateDateOfBirth({{ $loop->index }})">
+                                            data-index="{{ $loop->index }}">
                                             @for ($i = 1; $i <= 12; $i++)
                                                 <option value="{{ $i }}"
-                                                {{ \Carbon\Carbon::parse($passenger['date_of_birth'])->format('m') == $i ? 'selected' : '' }}>
-                                                {{ $i }}
+                                                    {{ \Carbon\Carbon::parse($passenger['date_of_birth'])->format('m') == $i ? 'selected' : '' }}>
+                                                    {{ $i }}
                                                 </option>
                                             @endfor
                                         </select>
@@ -298,23 +288,23 @@
 
                                     <label
                                         class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                                        @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
+                                    @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
                                         <img src="{{ asset('assets/images/icons/note-add-black.svg') }}"
                                             class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0"
                                             alt="icon">
                                         <select id="year-select-{{ $loop->index }}" name=""
                                             class="date-select year-select appearance-none w-full outline-none pl-[50px] py-3 px-5 font-semibold indeterminate:!font-normal"
-                                            data-index="{{ $loop->index }}"
-                                            onchange="updateDateOfBirth({{ $loop->index }})">
+                                            data-index="{{ $loop->index }}">
                                             @for ($i = date('Y'); $i >= 1900; $i--)
                                                 <option value="{{ $i }}"
-                                                {{ \Carbon\Carbon::parse($passenger['date_of_birth'])->format('Y') == $i ? 'selected' : '' }}>
-                                                {{ $i }}
+                                                    {{ \Carbon\Carbon::parse($passenger['date_of_birth'])->format('Y') == $i ? 'selected' : '' }}>
+                                                    {{ $i }}
                                                 </option>
                                             @endfor
                                         </select>
                                     </label>
                                 </div>
+
                                 @error('passengers.' . $loop->index . '.date_of_birth')
                                     <p class="text-sm text-red-500">{{ $message }}</p>
                                 @enderror
@@ -323,18 +313,20 @@
                                 <p class="font-semibold">Nationality</p>
                                 <div
                                     class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                                    @error('passengers.' . $loop->index . '.nationality') border-red-500 @enderror">
+                                @error('passengers.' . $loop->index . '.nationality') border-red-500 @enderror">
                                     <img src="{{ asset('assets/images/icons/global-black.svg') }}"
                                         class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0"
                                         alt="icon">
-                                    <select name="passengers[{{ $loop->index }}][nationality]" id=""
+                                    <select id=""
                                         class="appearance-none w-full outline-none pl-[50px] py-3 px-5 font-semibold indeterminate:!font-normal">
                                         <option hidden>Select country region</option>
                                         <option value="Singapore"
                                             {{ $passenger['nationality'] === 'Singapore' ? 'selected' : '' }}>Singapore
                                         </option>
-                                        <option {{ $passenger['nationality'] === 'Japan' ? 'selected' : '' }}>Japan</option>
-                                        <option {{ $passenger['nationality'] === 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
+                                        <option {{ $passenger['nationality'] === 'Japan' ? 'selected' : '' }}>Japan
+                                        </option>
+                                        <option {{ $passenger['nationality'] === 'Indonesia' ? 'selected' : '' }}>Indonesia
+                                        </option>
                                     </select>
                                 </div>
                                 @error('passengers.' . $loop->index . '.nationality')
@@ -363,8 +355,9 @@
                                 <img src="{{ asset('assets/images/icons/note-add-black.svg') }}"
                                     class="w-5 flex shrink-0 group-has-[:checked]:invert transition-all duration-300"
                                     alt="icon">
-                                <span class="font-semibold group-has-[:checked]:text-white">Transfer to Bank (Cooming Soon)</span>
-                                <input type="radio" name="payment-method" class="absolute opacity-0 left-1/2" required disabled>
+                                <span class="font-semibold group-has-[:checked]:text-white">Transfer to Bank (Cooming
+                                    Soon)</span>
+                                <input type="radio" name="payment-method" class="absolute opacity-0 left-1/2" disabled>
                             </label>
                         </div>
                     </div>
@@ -381,33 +374,32 @@
 @section('scripts')
     <script>
         window.addEventListener('promoCodeUpdated', event => {
-            //Ambil harga produk dan jumlah seat yang dipilih
+            // Ambil harga produk dan jumlah seat yang dipilih
             const price = parseFloat('{{ $tier->price }}');
             const quantity = parseInt('{{ count($transaction['selected_seats']) }}');
             const totalWithoutDiscount = price * quantity * 1.11;
 
-            //variable untuk menyimpan total baru dan total discount
+            // Variabel untuk menyimpan total baru dan total diskon
             let newTotal;
             let totalPromo = 0;
 
-            //Cek tipe discount dan hitung total serta discoun yang diterapkan 
+            // Cek tipe diskon dan hitung total serta diskon yang diterapkan
             const promoCode = event.detail[0].promo_code;
             const discountType = event.detail[0].discount_type;
             const discountValue = event.detail[0].discount;
 
             if (discountType === 'percentage') {
                 totalPromo = totalWithoutDiscount * (discountValue / 100);
-            }else {
+            } else {
                 totalPromo = discountValue;
             }
 
             newTotal = totalWithoutDiscount - totalPromo;
 
-            //Tampilkan hasil perbandingan total dan promo yang diterapkan
+            // Tampilkan hasil perhitungan total dan promo yang diterapkan
             document.getElementById('promo-code').innerHTML = promoCode;
-            document.getElementById('grand-total').innerHTML = 'Rp' + newTotal.toLocaleString('id-ID');
-            document.getElementById('discount').innerHTML = 'Rp' + totalPromo.toLocaleString('id-ID');
+            document.getElementById('grand-total').innerHTML = 'Rp ' + newTotal.toLocaleString('id-ID');
+            document.getElementById('discount').innerHTML = '- Rp ' + totalPromo.toLocaleString('id-ID');
         });
     </script>
-    
 @endsection
